@@ -57,21 +57,21 @@ import {
 } from './history'
 import type { History, Summary } from './history'
 
-const isOn = atom({ plugin: 'grammar', key: 'grammarOn' } as const, true)
-const isNatural = atom({ plugin: 'grammar', key: 'grammarNatural' } as const, true)
-const keepsHistory = atom({ plugin: 'grammar', key: 'grammarHistory' } as const, true)
-const reviews = atom({ plugin: 'grammar', key: 'grammarReviews' } as const, [] as GrammarReview[])
-const asks = atom({ plugin: 'grammar', key: 'grammarAsks' } as const, [] as GrammarAsk[])
+const isOn = atom({ plugin: 'prompt-grammar', key: 'grammarOn' } as const, true)
+const isNatural = atom({ plugin: 'prompt-grammar', key: 'grammarNatural' } as const, true)
+const keepsHistory = atom({ plugin: 'prompt-grammar', key: 'grammarHistory' } as const, true)
+const reviews = atom({ plugin: 'prompt-grammar', key: 'grammarReviews' } as const, [] as GrammarReview[])
+const asks = atom({ plugin: 'prompt-grammar', key: 'grammarAsks' } as const, [] as GrammarAsk[])
 // What follow-ups remember, oldest first: asks and reviews, up to ASK_MEMORY.
-const thread = atom({ plugin: 'grammar', key: 'grammarThread' } as const, [] as GrammarTurn[])
-const askMemory = atom({ plugin: 'grammar', key: 'grammarAskMemory' } as const, true)
+const thread = atom({ plugin: 'prompt-grammar', key: 'grammarThread' } as const, [] as GrammarTurn[])
+const askMemory = atom({ plugin: 'prompt-grammar', key: 'grammarAskMemory' } as const, true)
 // The latest checks, newest first, each with the prompt it checked.
-const checks = atom({ plugin: 'grammar', key: 'grammarChecks' } as const, [] as GrammarCheck[])
-const lastId = atom({ plugin: 'grammar', key: 'grammarLastId' } as const, 0)
+const checks = atom({ plugin: 'prompt-grammar', key: 'grammarChecks' } as const, [] as GrammarCheck[])
+const lastId = atom({ plugin: 'prompt-grammar', key: 'grammarLastId' } as const, 0)
 // The id of the check whose band was hidden; the next check shows again.
-const hiddenId = atom({ plugin: 'grammar', key: 'grammarHiddenId' } as const, 0)
-const fails = atom({ plugin: 'grammar', key: 'grammarFails' } as const, 0)
-const streak = atom({ plugin: 'grammar', key: 'grammarStreak' } as const, 0)
+const hiddenId = atom({ plugin: 'prompt-grammar', key: 'grammarHiddenId' } as const, 0)
+const fails = atom({ plugin: 'prompt-grammar', key: 'grammarFails' } as const, 0)
+const streak = atom({ plugin: 'prompt-grammar', key: 'grammarStreak' } as const, 0)
 
 // Where 1.0 kept the two switches; moved into the plugin's settings on the first start of 1.1.
 const STORE_ON = 'grammar.on'
@@ -221,8 +221,8 @@ const persist = async ($: EngineInterface, field: string, value: boolean): Promi
   try {
     // The row's key as /config names it (an installed copy may carry its marketplace), else the plain one.
     const rows = await $.config.list().catch(() => [])
-    const row = rows.find(r => r.provider.plugin.split('@')[0] === 'grammar' && r.key.endsWith(`.${field}`))
-    const r = await $.config.set({ key: row?.key ?? `grammar.${field}`, value })
+    const row = rows.find(r => r.provider.plugin.split('@')[0] === 'prompt-grammar' && r.key.endsWith(`.${field}`))
+    const r = await $.config.set({ key: row?.key ?? `prompt-grammar.${field}`, value })
     return 'deny' in r ? String(r.deny) : undefined
   } catch (err) {
     return message(err)

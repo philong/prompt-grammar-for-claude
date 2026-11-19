@@ -41,7 +41,7 @@ export type GrammarTurn = { q: string; a: string }
 
 declare module 'claude-code' {
   interface PluginState {
-    grammar: {
+    'prompt-grammar': {
       grammarOn: boolean
       grammarNatural: boolean
       // Fixes are kept in grammar-history.json for /grammar stats and /grammar review.

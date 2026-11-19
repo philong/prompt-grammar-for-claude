@@ -8,7 +8,7 @@ Only the latest release gets fixes. Installed copies update when the version cha
 
 ## Reporting a vulnerability
 
-Report it privately through [GitHub's private vulnerability reporting](https://github.com/jaklimoff/claude-grammar/security/advisories/new), not in a public issue.
+Report it privately through [GitHub's private vulnerability reporting](https://github.com/philong/prompt-grammar-for-claude/security/advisories/new), not in a public issue.
 
 Please include what an attacker could do, the version, and the steps or a prompt that shows it. You'll get a reply within a week. Once a fix is released, the advisory is published with credit to you, unless you'd rather not be named.
 

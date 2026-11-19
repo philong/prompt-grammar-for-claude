@@ -7,7 +7,7 @@ Issues and pull requests are welcome. For anything bigger than a small fix, open
 You need Claude Code (v2.1.314 or later) and, for the tools in `tools/` and `docs/`, [Bun](https://bun.sh).
 
 ```
-git clone https://github.com/jaklimoff/claude-grammar && cd claude-grammar
+git clone https://github.com/philong/prompt-grammar-for-claude && cd prompt-grammar-for-claude
 claude --plugin-dir .              # Claude Code with your working copy of the mod
 ```
 

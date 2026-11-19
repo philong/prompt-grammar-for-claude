@@ -50,7 +50,7 @@ if (!Number.isInteger(days) || days < 1 || days > KEEP_DAYS) {
 const loadSettings = (): Settings => {
   try {
     const all = JSON.parse(readFileSync(join(configDir, 'settings.json'), 'utf8')) as { pluginConfigs?: Record<string, { options?: object }> }
-    const key = Object.keys(all.pluginConfigs ?? {}).find(k => k.split('@')[0] === 'grammar')
+    const key = Object.keys(all.pluginConfigs ?? {}).find(k => k.split('@')[0] === 'prompt-grammar')
     return settingsFrom((key === undefined ? {} : all.pluginConfigs?.[key]?.options ?? {}) as never)
   } catch {
     return settingsFrom({})

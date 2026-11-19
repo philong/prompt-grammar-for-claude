@@ -411,7 +411,7 @@
     dots.innerHTML = SCENES.map((_, j) => j === idx
       ? `<i class="on"><b style="width:${f3(clamp(lt / sc.dur) * 100)}%"></b></i>`
       : `<i class="${j < idx ? 'done' : ''}"></i>`).join('');
-    const title = sc.shell ? '~/claude-grammar — zsh' : '~/my-api — claude';
+    const title = sc.shell ? '~/prompt-grammar-for-claude — zsh' : '~/my-api — claude';
     if (title !== lastWin) { wt.textContent = title; lastWin = title; }
 
     const st = sc.build(lt);
