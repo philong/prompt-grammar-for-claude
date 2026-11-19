@@ -1,12 +1,14 @@
-# grammar
+# prompt-grammar
 
-[![test](https://github.com/jaklimoff/claude-grammar/actions/workflows/test.yml/badge.svg)](https://github.com/jaklimoff/claude-grammar/actions/workflows/test.yml)
+Forked from [jaklimoff/claude-grammar](https://github.com/jaklimoff/claude-grammar) (v1.7.0, MIT).
+
+[![test](https://github.com/philong/prompt-grammar-for-claude/actions/workflows/test.yml/badge.svg)](https://github.com/philong/prompt-grammar-for-claude/actions/workflows/test.yml)
 
 A Claude Code plugin that checks the English of each prompt you send and shows the fixes right under it. It can check another language instead, a few you choose, or each prompt in whatever language it's written in: see [Other languages](#other-languages).
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jaklimoff/claude-grammar/media/tour-dark.gif">
-  <img alt="A tour in six scenes. A prompt's mistakes are struck through in red under it, with the fixes in green and why. A second line says how a native speaker would put it. /grammar stats lists mistakes by kind and the fixes you repeat. /grammar review draws a summary card with bars, then habits to work on with your own fixes as examples. /grammar ignore add keeps your jargon unflagged and /grammar help shows the settings. tools/import-history.ts fills the history from past prompts." src="https://raw.githubusercontent.com/jaklimoff/claude-grammar/media/tour-light.gif">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/philong/prompt-grammar-for-claude/media/tour-dark.gif">
+  <img alt="A tour in six scenes. A prompt's mistakes are struck through in red under it, with the fixes in green and why. A second line says how a native speaker would put it. /grammar stats lists mistakes by kind and the fixes you repeat. /grammar review draws a summary card with bars, then habits to work on with your own fixes as examples. /grammar ignore add keeps your jargon unflagged and /grammar help shows the settings. tools/import-history.ts fills the history from past prompts." src="https://raw.githubusercontent.com/philong/prompt-grammar-for-claude/media/tour-light.gif">
 </picture>
 
 If English is not your first language, you write a lot of it in your prompts, and nobody tells you where it goes wrong. Claude understands you anyway, so the same mistakes stay. With this plugin, Haiku proofreads each prompt after you send it, and a dim line under that prompt shows what to fix: the wrong words struck through in red, the fixes in green, and a few words on why. When a sentence still sounds off once the grammar is fixed, a second line shows how a native speaker would say it.
@@ -14,8 +16,8 @@ If English is not your first language, you write a lot of it in your prompts, an
 Over time it keeps your fixes, so `/grammar stats` shows the mistakes you make most and `/grammar review` turns them into a few rules written for you, with your own mistakes as the examples.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jaklimoff/claude-grammar/media/cost-brand-dark.png">
-  <img alt="What the grammar check costs: a 50-prompt session is $0.004 to $0.02. Per check: a clean prompt $0.00007 (602 tokens in, 21 out); 3 mistakes $0.0003 to $0.0005 (613 in, 425 to 799 out); 5+ mistakes $0.0002 to $0.0003 (638 in, 239 to 541 out). Claude Haiku 5.5 at low effort, API prices, measured 2026-10-30 on version 1.2.0." src="https://raw.githubusercontent.com/jaklimoff/claude-grammar/media/cost-brand-light.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/philong/prompt-grammar-for-claude/media/cost-brand-dark.png">
+  <img alt="What the grammar check costs: a 50-prompt session is $0.004 to $0.02. Per check: a clean prompt $0.00007 (602 tokens in, 21 out); 3 mistakes $0.0003 to $0.0005 (613 in, 425 to 799 out); 5+ mistakes $0.0002 to $0.0003 (638 in, 239 to 541 out). Claude Haiku 5.5 at low effort, API prices, measured 2026-10-30 on version 1.2.0." src="https://raw.githubusercontent.com/philong/prompt-grammar-for-claude/media/cost-brand-light.png">
 </picture>
 
 How it was measured: [Privacy and cost](#privacy-and-cost).
@@ -23,14 +25,14 @@ How it was measured: [Privacy and cost](#privacy-and-cost).
 ## Install
 
 ```
-/plugin marketplace add jaklimoff/claude-grammar
-/plugin install grammar@grammar
+/plugin marketplace add philong/prompt-grammar-for-claude
+/plugin install prompt-grammar@prompt-grammar
 ```
 
 Or in one step from the shell (v2.1.292+):
 
 ```
-claude plugin install grammar --marketplace jaklimoff/claude-grammar
+claude plugin install prompt-grammar --marketplace philong/prompt-grammar-for-claude
 ```
 
 ## Use
@@ -82,7 +84,7 @@ A clean prompt adds nothing. The fixes become part of the conversation, so Claud
 
 ## Settings
 
-Under `/config`, or in `settings.json` under `pluginConfigs` → `grammar@grammar` (the plugin as you installed it: `grammar@<marketplace>`) → `options`:
+Under `/config`, or in `settings.json` under `pluginConfigs` → `prompt-grammar@prompt-grammar` (the plugin as you installed it: `prompt-grammar@<marketplace>`) → `options`:
 
 | Setting | Default | What it does |
 |---|---|---|
@@ -238,7 +240,7 @@ What is remembered lives in the session's memory only and is gone when the sessi
 The history starts with your next prompt, but Claude Code's transcripts still hold the prompts you typed before. `tools/import-history.ts` checks those with the plugin's own prompt and adds their fixes, each with the time the prompt was sent:
 
 ```
-git clone https://github.com/jaklimoff/claude-grammar && cd claude-grammar
+git clone https://github.com/philong/prompt-grammar-for-claude && cd prompt-grammar-for-claude
 bun tools/import-history.ts --dry-run       # how many prompts, no model calls
 bun tools/import-history.ts --days 30       # the last 30 days (default 7, at most 90)
 ```

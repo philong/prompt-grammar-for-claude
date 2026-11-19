@@ -1,12 +1,12 @@
 {
-  "name": "grammar",
-  "version": "1.7.0",
+  "name": "prompt-grammar",
+  "version": "2.0.0",
   "description": "Checks the English (or another language you set, or whatever language each prompt is in) of each prompt you send to Claude Code, shows the fixes under it, and keeps them so /grammar stats and /grammar review show the mistakes you make most, and /grammar ask answers your questions about them. Sends each prompt you type to Haiku (one small call per prompt), and the kept fixes to Sonnet when you run /grammar review or /grammar ask, through your own Claude Code session, or all of it to an OpenAI-compatible endpoint you set (llama.cpp, LM Studio, Ollama, OpenRouter)",
   "author": {
     "name": "Jack Klimov",
     "url": "https://jack.direct"
   },
-  "repository": "https://github.com/jaklimoff/claude-grammar",
+  "repository": "https://github.com/philong/prompt-grammar-for-claude",
   "types": "./types/index.d.ts",
   "userConfig": {
     "enabled": {
@@ -144,8 +144,8 @@
     }
   },
   "license": "MIT",
-  "homepage": "https://github.com/jaklimoff/claude-grammar",
-  "documentationUrl": "https://github.com/jaklimoff/claude-grammar#readme",
-  "supportUrl": "https://github.com/jaklimoff/claude-grammar/issues",
-  "privacyPolicyUrl": "https://github.com/jaklimoff/claude-grammar/blob/main/PRIVACY.md"
+  "homepage": "https://github.com/philong/prompt-grammar-for-claude",
+  "documentationUrl": "https://github.com/philong/prompt-grammar-for-claude#readme",
+  "supportUrl": "https://github.com/philong/prompt-grammar-for-claude/issues",
+  "privacyPolicyUrl": "https://github.com/philong/prompt-grammar-for-claude/blob/main/PRIVACY.md"
 }

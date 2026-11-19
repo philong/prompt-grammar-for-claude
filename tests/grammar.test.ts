@@ -29,7 +29,7 @@ const NOW = Date.UTC(2026, 9, 30, 12)
 /** The transcript row of a prompt you typed. */
 const mountRow = ($: Engine, text: string, kind = 'composer') =>
   $.ui.mount({
-    plugin: 'grammar',
+    plugin: 'prompt-grammar',
     surface: 'terminal',
     component: 'UserMessage',
     props: { text, origin: { kind }, isExpanded: false } as never,
@@ -265,8 +265,8 @@ test('/grammar on|off saves the setting through /config', async ($, on) => {
   const toggled = await $.command.run({ command: 'grammar', args: '' } as never)
   expect(toggled.text).toContain('English check on')
   expect(sets).toEqual([
-    { key: 'grammar.enabled', value: false },
-    { key: 'grammar.enabled', value: true },
+    { key: 'prompt-grammar.enabled', value: false },
+    { key: 'prompt-grammar.enabled', value: true },
   ])
 })
 
@@ -286,7 +286,7 @@ test('the 1.0 switches move into the settings once', async ($, on) => {
   const clock = mock.clock(on)
   const asked = haiku(on, FIXES, undefined, undefined, { 'grammar.on': false, 'grammar.natural': true })
   await $.session.start({} as never)
-  expect(sets).toEqual([{ key: 'grammar.enabled', value: false }])
+  expect(sets).toEqual([{ key: 'prompt-grammar.enabled', value: false }])
   await $.prompt.submit({ text: TYPO } as never)
   await clock.advance(5)
   expect(asked.prompts.length).toBe(0)
@@ -397,7 +397,7 @@ test('a failed check shows as a transcript line on the desktop', async ($, on) =
 /** The band above the prompt on a surface. */
 const mountBand = ($: Engine, surface: 'desktop' | 'terminal', hasSurvey = false) =>
   $.ui.mount({
-    plugin: 'grammar',
+    plugin: 'prompt-grammar',
     surface,
     component: 'AbovePrompt',
     props: { hasSurvey, isWorking: false } as never,
@@ -908,7 +908,7 @@ test('/grammar history off|on saves the setting, and clear empties the file', as
   const asked = haiku(on, FIXES, undefined, { [HISTORY_FILE]: historyText(seeded([['depend from', 'depend on', 'preposition', 3]])) })
   const off = await $.command.run({ command: 'grammar', args: 'history off' } as never)
   expect(off.text).toContain('History off')
-  expect(sets).toEqual([{ key: 'grammar.history', value: false }])
+  expect(sets).toEqual([{ key: 'prompt-grammar.history', value: false }])
   await $.prompt.submit({ text: TYPO } as never)
   await clock.advance(5)
   expect(parseHistory(asked.files.get(HISTORY_FILE) ?? '').fixes.length).toBe(3)
@@ -1148,7 +1148,7 @@ test('import helpers: a batch reply by id, and an import merged before the live 
 /** The output row of a /grammar command. */
 const mountOutput = ($: Engine, args: string, text: string) =>
   $.ui.mount({
-    plugin: 'grammar',
+    plugin: 'prompt-grammar',
     surface: 'terminal',
     component: 'CommandOutput',
     props: { command: 'grammar', args, text, isErrored: false } as never,
@@ -1313,7 +1313,7 @@ test('/grammar ask memory off saves the setting, forgets, and each ask starts fr
   const asked = haiku(on, 'an answer')
   await ask($, 'first?')
   expect(await ask($, 'memory off')).toBe('Ask memory off: each /grammar ask starts fresh, and the 1 remembered exchange is forgotten.')
-  expect(sets).toEqual([{ key: 'grammar.ask_memory', value: false }])
+  expect(sets).toEqual([{ key: 'prompt-grammar.ask_memory', value: false }])
   await ask($, 'second?')
   const third = await ask($, 'third?')
   expect(asked.prompts[2]).not.toContain('Earlier in this conversation')
@@ -1322,7 +1322,7 @@ test('/grammar ask memory off saves the setting, forgets, and each ask starts fr
   expect((await $.command.run({ command: 'grammar', args: 'help' } as never)).text).toContain('Ask memory: off.')
 
   expect(await ask($, 'memory')).toContain('Ask memory on')
-  expect(sets.at(-1)).toEqual({ key: 'grammar.ask_memory', value: true })
+  expect(sets.at(-1)).toEqual({ key: 'prompt-grammar.ask_memory', value: true })
   await ask($, 'fourth?')
   await ask($, 'fifth?')
   expect(asked.prompts.at(-1)).toContain('Q: fourth?')

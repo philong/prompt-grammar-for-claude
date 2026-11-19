@@ -1,6 +1,6 @@
 # Privacy
 
-grammar is a Claude Code plugin. It has no server and collects nothing for its author.
+prompt-grammar is a Claude Code plugin. It has no server and collects nothing for its author.
 
 ## What it sends
 
@@ -32,4 +32,4 @@ The plugin reads and writes no other files.
 
 ## Contact
 
-Questions: open an issue at https://github.com/jaklimoff/claude-grammar/issues.
+Questions: open an issue at https://github.com/philong/prompt-grammar-for-claude/issues.
